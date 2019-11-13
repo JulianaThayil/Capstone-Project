@@ -1,0 +1,10 @@
+baseURL = "https://www.cranky-hypatia-14deab.netlify.com/"
+languageCode = "en-us"
+title = "Brightin.me"
+theme = "hugonews"
+min_version = "0.57.0"
+
+[taxonomies]
+    tag = "tags"
+    category = "categories"
+    site = "sites"
