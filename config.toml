@@ -1,9 +1,0 @@
-baseURL = "https://goofy-panini-6bf38c.netlify.com/"
-languageCode = "en-us"
-theme = "hugonews"
-min_version = "0.59.1"
-
-[taxonomies]
-    tag = "tags"
-    category = "categories"
-    site = "sites"
