@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Calculator</title>
     <link rel="stylesheet" type="text/css" href="design.css">
     <script src="backend.js" type="text/javascript" ></script>
@@ -14,24 +13,31 @@
                   <div data-previous-operand class="previous-operand"></div>
                   <div data-current-operand class="current-operand"></div>
                 </div>
-                <button  data-all-clear class="span-two">AC</button>
-                <button data-delete>DEL</button>
-                <button data-operation>÷</button>
-                <button data-number>1</button>
-                <button data-number>2</button>
-                <button data-number>3</button>
-                <button data-operation>*</button>
-                <button data-number>4</button>
-                <button data-number>5</button>
-                <button data-number>6</button>
-                <button data-operation>+</button>
-                <button data-number>7</button>
-                <button data-number>8</button>
-                <button data-number>9</button>
-                <button data-operation>-</button>
-                <button data-number>.</button>
-                <button data-number>0</button>
-                <button style="background-color: #cfcfe0" data-equals class="span-two">=</button>
+                <button class="blackbottons" data-number>7</button>
+                <button  class="blackbottons" data-number>8</button>
+                <button  class="blackbottons" data-number>9</button>
+                <button style="font-size: 3rem;" class="operator" data-operation>÷</button>
+
+               <button class="blackbottons" data-number>4</button>
+                <button class="blackbottons" data-number>5</button>
+                <button class="blackbottons" data-number>6</button>
+                <button style="font-size: 3rem;" class="operator" data-operation>-</button>
+
+                
+                <button class="blackbottons" data-number>1</button>  
+                <button class="blackbottons" data-number>2</button>
+                <button class="blackbottons" data-number>3</button>
+                <button style="font-size: 3rem;" class="operator" data-operation>+</button>
+
+<button class="blackbottons" >,</button>
+<button class="blackbottons" data-number>0</button>
+<button class="blackbottons" data-number>.</button>
+<button style="font-size: 3rem;" class="operator" data-operation>*</button>
+
+                <button data-delete style="border-bottom-left-radius:18px; font-size:1.5rem; color:#53535a;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 28px 26px 0 rgba(0, 0, 0, 0.19);" class="blackbottons" >DEL</button>
+                <button  style="font-size:1.8rem;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 30px 26px 0 rgba(0, 0, 0, 0.19);" class="span-two blackbottons" data-all-clear >AC</button>
+                <button class="equalto" style="font-size:3rem;color:white;" data-equals >=</button>
+
          </div>
     <script>
 class Calculator {
@@ -40,22 +46,18 @@ class Calculator {
     this.currentOperandTextElement = currentOperandTextElement
     this.clear()
   }
-
   clear() {
     this.currentOperand = ''
     this.previousOperand = ''
     this.operation = undefined
   }
-
   delete() {
     this.currentOperand = this.currentOperand.toString().slice(0, -1)
   }
-
   appendNumber(number) {
     if (number === '.' && this.currentOperand.includes('.')) return
     this.currentOperand = this.currentOperand.toString() + number.toString()
   }
-
   chooseOperation(operation) {
     if (this.currentOperand === '') return
     if (this.previousOperand !== '') {
@@ -65,7 +67,6 @@ class Calculator {
     this.previousOperand = this.currentOperand
     this.currentOperand = ''
   }
-
   compute() {
     let computation
     const prev = parseFloat(this.previousOperand)
@@ -91,7 +92,6 @@ class Calculator {
     this.operation = undefined
     this.previousOperand = ''
   }
-
   getDisplayNumber(number) {
     const stringNumber = number.toString()
     const integerDigits = parseFloat(stringNumber.split('.')[0])
@@ -108,7 +108,6 @@ class Calculator {
       return integerDisplay
     }
   }
-
   updateDisplay() {
     this.currentOperandTextElement.innerText =
       this.getDisplayNumber(this.currentOperand)
@@ -120,8 +119,6 @@ class Calculator {
     }
   }
 }
-
-
 const numberButtons = document.querySelectorAll('[data-number]')
 const operationButtons = document.querySelectorAll('[data-operation]')
 const equalsButton = document.querySelector('[data-equals]')
@@ -129,33 +126,27 @@ const deleteButton = document.querySelector('[data-delete]')
 const allClearButton = document.querySelector('[data-all-clear]')
 const previousOperandTextElement = document.querySelector('[data-previous-operand]')
 const currentOperandTextElement = document.querySelector('[data-current-operand]')
-
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
-
 numberButtons.forEach(button => {
   button.addEventListener('click', () => {
     calculator.appendNumber(button.innerText)
     calculator.updateDisplay()
   })
 })
-
 operationButtons.forEach(button => {
   button.addEventListener('click', () => {
     calculator.chooseOperation(button.innerText)
     calculator.updateDisplay()
   })
 })
-
 equalsButton.addEventListener('click', button => {
   calculator.compute()
   calculator.updateDisplay()
 })
-
 allClearButton.addEventListener('click', button => {
   calculator.clear()
   calculator.updateDisplay()
 })
-
 deleteButton.addEventListener('click', button => {
   calculator.delete()
   calculator.updateDisplay()
