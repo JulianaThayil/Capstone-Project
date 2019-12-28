@@ -19,8 +19,8 @@ body {
     padding:70px;
     justify-content: center;
     align-content: center;
-    grid-template-columns: repeat(4,minmax(auto, 130px));
-    grid-template-rows: minmax(100px, auto) repeat(5,minmax(auto, 80px));
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: minmax(100px, auto) repeat(5,1fr);
   }
   
 .blackbottons{
